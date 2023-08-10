@@ -1,0 +1,68 @@
+{% extends 'homepage.html' %}
+
+{% block title %}Моя корзина{% endblock %}
+
+{% block content %}
+<div id='cart-body'>
+    <h3>Моя корзина</h3>
+
+    <div id='cart-table'>
+        {% if messages %}
+        <div id='messages'>
+            {% for message in messages %}
+            <div>{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if user.username %}
+        <div class='cart-section' id='name-prod'>
+            <h4>Продукт(ы)</h4>
+            {% if request.session.cart.items %}
+            {% for key, value in request.session.cart.items %}
+            <p>
+                {{ value.name }}
+                <a id='delete' href="{% url 'eliminar' value.product_id %}"><strong>Устранять</strong></a>
+            </p>
+            {% endfor %}
+            {% else %}
+            <div class='cart-empty'><p>Пустая корзина!</p></div>
+            {% endif %}
+        </div>
+
+        <div class='cart-section' id='quantity-prod'>
+            <h4>Количество</h4>
+            {% for key, value in request.session.cart.items %}
+            <p>{{ value.quantity }}
+                <a id='bplus' href="{% url 'agregar_en_pagina' value.product_id %}">+</a>
+                <a id='bless' href="{% url 'restar' value.product_id %}">-</a>
+            </p>
+            {% endfor %}
+        </div>
+
+        <div class='cart-section' id='price-prod'>
+            <h4>Цена</h4>
+            {% for key, value in request.session.cart.items %}
+            <p>{{ value.price|floatformat:2 }} $</p>
+            {% endfor %}
+        </div>
+
+        <div id='total-price'>
+            <h4>Общий: {{ total_price|floatformat:2 }}$</h4>
+        </div>
+        {% if request.session.cart.items %}
+        <div id='make-order'>
+            <a href="{% url 'make_purchase' %}"><strong>Сделать покупку</strong></a>
+        </div>        
+        {% endif %}
+        <div id='clean-cart'>
+            <a href="{% url 'limpiar_carrito' %}"><strong>Очистить корзину</strong></a>
+        </div>
+        {% else %}
+        <div id='error-message'>
+            <p><strong>Вы должны авторизоваться, чтобы совершать покупки!</strong></p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

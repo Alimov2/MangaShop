@@ -1,0 +1,36 @@
+{% extends 'homepage.html' %}
+
+{% block title %}Зарегистрироваться{% endblock %}
+
+{% block content %}
+
+    {% if messages %}
+        {% for message in messages %}
+            <div id='error-message'>{{message}}</div>
+        {% endfor %}
+    {% endif %}
+
+        <h2 id='register-login-title'>Зарегистрироваться:</h2>
+
+    <div id='form-register-login'>
+        <form method='POST' action=''>
+            {% csrf_token %}
+            
+            <p>{{form.first_name.label}}</p>
+            {{form.first_name}}
+            <p>{{form.last_name.label}}</p>
+            {{form.last_name}}
+            <p>{{form.username.label}}</p>
+            {{form.username}}
+            <p>{{form.email.label}}</p>
+            {{form.email}}
+            <p>{{form.password1.label}}</p>
+            {{form.password1}}
+            <p>{{form.password2.label}}</p>
+            {{form.password2}}
+
+            <input type='submit' value='Зарегистрироваться'/>
+        </form>
+    </div>
+
+{% endblock %}

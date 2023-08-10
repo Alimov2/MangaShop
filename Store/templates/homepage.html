@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href=" {% static 'css\style.css' %} ">
+    <link rel="shortcut icon" href=" {% static 'img\icon.ico' %} " type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=Silkscreen&display=swap" rel="stylesheet">
+    <title>Manga Shop | {% block title %}{% endblock %} </title>
+</head>
+<body>
+    <div id="header">
+        <div id='title'>
+            <h1><a href={% url 'my_manga' %}>Manga Shop</a></h1>
+        </div>
+       <div id='search-bar'>
+            <form action='/search-manga/' method='GET'>
+                <input type="search" name='search' placeholder="Ты ищешь..." />
+                <input type="image" src= "{% static 'img\search.png' %}"  width='23' height='23'  value="search">
+            </form>
+        </div>
+        <div id='cart-button'>
+            <a href={% url 'carrito' %}><img src= "{% static 'img\cart-icon.png' %}" width='25' height='25' ></a>
+        </div>
+        <div>
+            <ul class='menu-user'>
+
+                {% if user.username %}
+                    <li><img src={% static 'img\hand.gif' %} width='20' height='20' />Привет! {{user.username|upper}}</li>
+                    <li><a href={% url 'cerrar-sesion' %}>Выйти</a></li>
+                {% else %}
+                    <li><a href={% url 'my_login' %}>Войти</a></li>
+                    <li><a href={% url 'my_register' %}>Зарегистрироваться</a></li>
+                {% endif %}
+
+            </ul>
+        </div>
+        
+    </div>
+    <div id="content">
+        {% block content %}
+        
+        {% endblock %}
+    </div>
+
+    <footer>
+        <p>Создано и разработано: Алимов Мухиддин.</p>
+        <p> &copy; Все права защищены.</p>
+        <p>11/08/2023.</p>
+    </footer>
+
+</body>
+</html>

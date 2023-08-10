@@ -1,0 +1,32 @@
+{% extends 'homepage.html' %}
+
+{% block title %}Авторизоваться{% endblock %}
+
+{% block content %}
+
+    {% if messages %}
+        {% for message in messages %}
+            <div id='error-message'>{{message}}</div>
+        {% endfor %}
+    {% endif %}
+
+    <h2 id='register-login-title'>Авторизоваться:</h2>
+
+    <!--Form-->
+    <div id='form-register-login'>
+        <form  action='' method='POST'>
+            {% csrf_token %}
+            
+            <label for='username'>Никнейм: </label>
+            <input type='text' name='username' placeholder='akm*123...' />
+            <label for='password'>Пароль: </label>
+            <input type='password' name='password' placeholder='**********' />
+
+            <input type='submit' value='Войти'/>
+        </form>
+
+        <p id='spam'>У вас нет аккаунта? Нажмите  <a href={% url 'my_register' %}>здесь</a> чтобы создать его.</p>
+    </div>
+
+
+{% endblock %}

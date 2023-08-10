@@ -1,0 +1,30 @@
+{% extends 'homepage.html' %}
+
+{% block title %}Результаты {{query}}{% endblock %}
+
+{% block content %}
+    <div id='store-body'>
+
+   {% if messages %}
+        {% for message in messages %}
+            <div id='error-message'>{{message}}</div>
+        {% endfor %}
+    {% endif %}
+
+
+            {% if results %}
+                <div id='results-body'>                
+                    <h3>Ты ищешь: <strong>{{query}}</strong></h3>
+                    <p>Найденные предметы: {{results|length}} статьи</p>
+                    
+                    <ul>
+                        {% for result in results %}
+                            <li id='ver'><a href={% url 'manga' result.slug %}><strong>{{result.name}}</strong></a></li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+    </div>
+
+{% endblock %}

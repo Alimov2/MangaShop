@@ -1,0 +1,45 @@
+<style>
+    #pages {
+        text-align: center;
+        margin: 20px 0;
+        font-family: Arial, sans-serif;
+    }
+
+    #pages-info {
+        font-size: 16px;
+        color: #333;
+    }
+
+    .pagination-links {
+        margin-top: 10px;
+    }
+
+    .pagination-link {
+        text-decoration: none;
+        color: #007bff;
+        padding: 5px 10px;
+        border: 1px solid #007bff;
+        border-radius: 5px;
+        margin: 0 5px;
+    }
+
+    .pagination-link:hover {
+        background-color: #007bff;
+        color: #fff;
+    }
+</style>
+
+<div id='pages'>
+    <p id='pages-info'>Страница {{mangas_pages.number}} из {{mangas_pages.paginator.num_pages}}.</p>
+    <div class="pagination-links">
+        {% if mangas_pages.has_previous %}
+            {% comment %} <a href="?page=1" class="pagination-link">&laquo; Начало</a>                 {% endcomment %}
+            <a href="?page={{mangas_pages.previous_page_number}}" class="pagination-link">&#8249; Назад</a>
+        {% endif %}
+
+        {% if mangas_pages.has_next %}
+            <a href="?page={{mangas_pages.next_page_number}}" class="pagination-link">Вперед &#8250;</a>
+            {% comment %} <a href="?page={{mangas_pages.paginator.num_pages}}" class="pagination-link">Последняя &raquo;</a> {% endcomment %}
+        {% endif %}
+    </div>
+</div>

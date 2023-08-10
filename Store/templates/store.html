@@ -1,0 +1,72 @@
+{% extends 'homepage.html' %}
+
+{% block title %}Начинать{% endblock %}
+
+{% block content %}
+    <div id='store-body'>
+
+        <div id='genre-menu'>
+            <div id='genre-list'>
+                <h3>Категория</h3>
+                <ul id="columns-list">
+                    {% for genre in genres %}
+                        <li><a href={% url 'detalle_genero' genre.slug %}>{{genre}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div id='demography-menu'> 
+            <div id='demography-list'>
+                <h3>Теги</h3>
+                <ul id='columns-list'>
+                    {% for demography in demographies %}
+                        <li><a href={% url 'detalle_demografia' demography.slug %}>{{demography}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+        <div id='mangas-body'>
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div id='good-message'>{{message}}</div>
+                {% endfor %}
+            {% endif %}            
+
+            <h3>ВСЕ ТОВАРЫ  В НАЛИЧИИ</h3>
+            
+            <div id='mangas-list'>    
+                {% for manga in mangas_pages %}
+                    <div id='manga-card'>
+                        <h2>{{manga.name}}</h2>
+                        <p><a href={% url 'imagen' manga.slug %}><img src='{{manga.image.url}}' width='200' height='300' alt='portada'/></a></p>
+                        
+                        <p id='gen'><strong>Жанр(ы):</strong> 
+                            {% for genre in manga.genre.all %}
+                                | <a href={% url 'detalle_genero' genre.slug %}>{{genre}}</a>
+                            {% endfor %}
+                        </p>
+                        
+                        <p id='demo'><strong>Теги:</strong>
+                            {% for demography in manga.demography.all %}
+                                <a href={% url 'detalle_demografia' demography.slug %}>{{demography}}</a>
+                            {% endfor %}
+                        </p>
+
+                        <p><strong>ЦЕНА:</strong> {{manga.price}}$.</p>
+                        
+                        <div id='info'><a href={% url 'manga' manga.slug %}><strong>Открыть</strong></a></div>
+                        <div id='add-cart'><a href={% url 'agregar' manga.id %}><strong>Добавить в корзину</strong></a></div>
+                    </div>
+
+                {% endfor %}
+            </div>
+        </div>
+        <div id='paginator'>
+            {% include 'widgets\pagination.html' %}
+        </div>    
+
+    </div>
+{% endblock %}
