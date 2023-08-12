@@ -37,6 +37,35 @@
     margin-top: 20px;
     font-size: 18px;
   }
+
+
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff5555; 
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #ee0000; /*
+}
+
+.button strong {
+  font-weight: bold;
+}
+
+.button a {
+  text-decoration: none;
+  color: inherit;
+}
+
 </style>
 
 <div class="container">
@@ -50,5 +79,11 @@
     {% endfor %} {% endif %}
   </ul>
   <p class="total-price">Общая стоимость: {{ total_price }} $</p>
+  <button class="button">
+    <a href="{% url 'limpiar_carrito' %}">
+      <strong>Купить</strong>
+    </a>
+  </button>
+  
 </div>
 {% endblock %}

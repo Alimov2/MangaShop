@@ -56,6 +56,9 @@ def detail_authors(request, slug):
 
 def detail_manga(request, slug):
     manga = Manga.objects.get(slug=slug)
+    if 'download' in request.POST:
+            return FileResponse(manga.manga_pdf, as_attachment=True)
+
 
     return render(request, "detail_manga.html", {"manga": manga})
 

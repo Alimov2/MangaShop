@@ -50,7 +50,7 @@
             
         </div>
 
-        {% comment %} <div id='add-cart-detail'><a target=_blank href="https://remanga.org/manga/mushoku_tensei_if_i_get_to_a_parallel_universe_ill_bring/32979?page=1"><strong>Читать</strong></a></div> {% endcomment %}
+        <div id='add-cart-detail'><a target=_blank href="{{manga.manga_pdf.url}}"><strong>Читать</strong></a></div>
         <div id='add-cart-detail'><a href={% url 'agregar' manga.id %}><strong>Добавить в корзину</strong></a></div>
     </div>
 

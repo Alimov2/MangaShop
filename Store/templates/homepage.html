@@ -30,6 +30,7 @@
 
                 {% if user.username %}
                     <li><img src={% static 'img\hand.gif' %} width='20' height='20' />Привет! {{user.username|upper}}</li>
+                    {% comment %} <li><a href="#">Р едактировать профиль</a></li> {% endcomment %}
                     <li><a href={% url 'cerrar-sesion' %}>Выйти</a></li>
                 {% else %}
                     <li><a href={% url 'my_login' %}>Войти</a></li>

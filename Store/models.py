@@ -77,6 +77,7 @@ class Manga(models.Model):
     demography = models.ManyToManyField(Demography)
     available = models.BooleanField(default=True, verbose_name="Доступно?")
     slug = models.SlugField(max_length=255, unique=True, verbose_name="URL")
+    manga_pdf = models.FileField(upload_to='manga_pdf')
 
     class Meta:
         verbose_name = "Манга"

@@ -55,6 +55,8 @@ def clean_cart(request):
 
     return render(request, "my_cart.html")
 
+
+
 def make_purchase(request):
     if request.method == 'POST':
         cart = Shopping_Cart_Class(request)
